@@ -1,0 +1,31 @@
+### BossBar Settings ###
+
+updateBar: true # if false, 1 message from the array will be displayed
+period: 20 # in ticks
+
+flexible: true # if false, then the strip will be equal to 100 (when updateBar: false makes no sense)
+
+messages:
+  - "%player_name%, you health - %player_health%"
+  - "Online - %server_online%/%server_maxonline%"
+  - "You coordinates - §7(§f%player_x%§6/§f%player_y%§6/§f%player_z%§7)"
+
+### TITLE Settings ###
+title: "§l§f> §aTest§bServer §f<"
+subTitle: "§lwelcome"
+fadeIn: 20
+stay: 20
+fadeOut: 5
+
+## Available placeholders:
+#  %player_name% - get the player's name
+#  %player_displayname% - get the player's display name
+#  %player_ping% - get the player's ping
+#  %player_health% - get the player's health
+#  %player_maxhealth% - get the player's max health
+#  %player_x% - get the player's x coordinate
+#  %player_y% - get the player's y coordinate
+#  %player_z% - get the player's z coordinate
+#  %server_online% - get current online players count
+#  %server_maxonline% - get max player count
+##
