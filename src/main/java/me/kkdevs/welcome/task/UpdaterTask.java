@@ -4,11 +4,10 @@ import cn.nukkit.Server;
 import cn.nukkit.scheduler.AsyncTask;
 import me.kkdevs.welcome.BarManager;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static me.kkdevs.welcome.Loader.config;
-import static me.kkdevs.welcome.Loader.replace;
+import static me.kkdevs.welcome.Loader.*;
 
 public class UpdaterTask extends AsyncTask {
 
@@ -19,7 +18,8 @@ public class UpdaterTask extends AsyncTask {
         try {
             messagesList = config.getStringList("messages");
         } catch (Exception exception) {
-            messagesList = new ArrayList<>();
+            exception.printStackTrace();
+            messagesList = Arrays.asList("Missing entries in the config", "Please declare an entry in the config plugins");
         }
     }
 
@@ -32,10 +32,10 @@ public class UpdaterTask extends AsyncTask {
 
         Server.getInstance().getOnlinePlayers().values().forEach(player -> {
             int length;
-            if(config.getBoolean("flexible", true)) {
+            if (config.getBoolean("flexible", true)) {
                 length = BAR_LENGTH;
             } else {
-                length = 100;
+                length = config.getInt("flexibleLength", 100);
             }
 
             MESSAGES_SIZE = MESSAGES_SIZE + 1;

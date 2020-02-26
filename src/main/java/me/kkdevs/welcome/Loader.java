@@ -20,12 +20,12 @@ public class Loader extends PluginBase {
 
         config = new Config("plugins/Welcome/config.yml", Config.YAML);
 
-        if (config.getBoolean("updateBar", true)) {
+        if (config.getBoolean("useBossBar", true) && config.getBoolean("updateBar", true)) {
             Server.getInstance().getScheduler().scheduleRepeatingTask(this, new UpdaterTask(), config.getInt("period", 20));
         }
 
         Arrays.asList(
-                new DataPacketReceiveListener(),
+                new DataPacketReceiveListener(this),
                 new PlayerQuitListener()
         ).forEach(listener -> Server.getInstance().getPluginManager().registerEvents(listener, this));
     }

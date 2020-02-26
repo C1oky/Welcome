@@ -1,9 +1,11 @@
 ### BossBar Settings ###
+useBossBar: true
 
 updateBar: true # if false, 1 message from the array will be displayed
 period: 20 # in ticks
 
-flexible: true # if false, then the strip will be equal to 100 (when updateBar: false makes no sense)
+flexible: true # when updateBar: false makes no sense
+flexibleLength: 100 # if flexible: true
 
 messages:
   - "%player_name%, you health - %player_health%"
@@ -11,8 +13,15 @@ messages:
   - "You coordinates - §7(§f%player_x%§6/§f%player_y%§6/§f%player_z%§7)"
 
 ### TITLE Settings ###
-title: "§l§f> §aTest§bServer §f<"
-subTitle: "§lwelcome"
+showTitle: true
+
+title:
+  - "§l§b>> §aName§fServer §b<<"
+subTitle:
+  - "You are the best!"
+  - "We are always glad to see you!"
+  - "Tell us about us"
+  - "Hi handsome"
 fadeIn: 20
 stay: 20
 fadeOut: 5

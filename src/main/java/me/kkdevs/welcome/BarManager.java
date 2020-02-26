@@ -5,25 +5,30 @@ import cn.nukkit.utils.DummyBossBar;
 
 import java.util.HashMap;
 
+import static me.kkdevs.welcome.Loader.*;
+
 public class BarManager {
 
     private static HashMap<String, Long> barList = new HashMap<>();
 
     public static void createBossBar(Player player, String text) {
-        if(getBarId(player) == null) {
-            DummyBossBar dummyBossBar = new DummyBossBar.Builder(player)
-                    .text(text)
-                    .length(100)
-                    .build();
-            player.createBossBar(dummyBossBar);
-            getMap().put(player.getName(), dummyBossBar.getBossBarId());
+        if (config.getBoolean("useBossBar", true)) {
+            if (getBarId(player) == null) {
+                DummyBossBar dummyBossBar = new DummyBossBar.Builder(player)
+                        .text(text)
+                        .length(100)
+                        .build();
+
+                player.createBossBar(dummyBossBar);
+                getMap().put(player.getName(), dummyBossBar.getBossBarId());
+            }
         }
     }
 
     public static void removeBossBar(Player player) {
         Long barId = getBarId(player);
 
-        if(barId != null) {
+        if (barId != null) {
             player.removeBossBar(barId);
             getMap().remove(player.getName());
         }
@@ -32,7 +37,7 @@ public class BarManager {
     public static void updateBossBar(Player player, String text, int length) {
         DummyBossBar dummyBossBar = getDummyBossBar(player);
 
-        if(dummyBossBar != null) {
+        if (dummyBossBar != null) {
             dummyBossBar.setText(text);
             dummyBossBar.setLength(length);
         }
@@ -41,7 +46,7 @@ public class BarManager {
     public static DummyBossBar getDummyBossBar(Player player) {
         Long barId = getBarId(player);
 
-        if(barId != null) {
+        if (barId != null) {
             return player.getDummyBossBar(barId);
         }
 
@@ -49,10 +54,10 @@ public class BarManager {
     }
 
     public static Long getBarId(Player player) {
-        Long batId = getMap().get(player.getName());
+        Long barId = getMap().get(player.getName());
 
-        if(batId != null) {
-            return batId;
+        if (barId != null) {
+            return barId;
         }
 
         return null;
